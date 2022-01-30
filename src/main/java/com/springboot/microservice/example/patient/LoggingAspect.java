@@ -90,18 +90,7 @@ public class LoggingAspect {
 		for(Long x : mtgTimes)
 			System.out.println(x);
 		
-		/* Query for MTG times and split String. Parse all String digits to Long and store in list */
-//		ec.query(G1, T1); 
-//		String result = ec.getQueryResult();
-//		result = result.replaceAll("[^-?0-9]+", " ").trim(); // remove all non-digits and empty lines
-//		String[] split = result.split(" ");
-//		
-//		long[] mtgTimes = new long[split.length - 1];
-//		for(int i = 0; i<split.length-1; i++) { 
-//			mtgTimes[i] = Long.parseLong(split[i+1]);
-//		}
-//		
-//		
+
 		/* Query for LG(T0, ..., Tn) and parse all Strings digits to Long and store in list */
 		ec.query(LG, T_LG);
 		writeFile(ec.getQueryResult(), testDBPath);	
@@ -141,6 +130,89 @@ public class LoggingAspect {
 
 		ec.turnOff();
 	}
+	
+	
+//	@Before("execution (* com.springboot.microservice.example.patient.PatientController.getPatientMedHistByName(..))")
+//	public void before0(JoinPoint joinPoint) throws Throwable	{
+//		// callEvent prefix realization		
+//		logger.info("Before aspect for {}", joinPoint);
+//		String precond = buildPreCond(joinPoint);
+//		appendFile(precond, localDBPath);
+//		logger.info(precond + " appended to local DB.");
+//		
+//		// send GET to triggers and collect the results
+//		// addPrecond prefix realization
+//		writeFile("", remoteDBPath);
+//		String content;
+//		content = restClinet.getPostsPlainJSON("http://localhost:8060/localdb");
+//		if (content != null) {
+//			appendFile(content, remoteDBPath);
+//		}
+//		logger.info(content + " appended to remote DB.");
+//				
+//		// initialize Prolog with LS, local and remote data
+//		// check if loggedfunccall is derivable and update log accordingly
+//		this.ec = new EngineCommunication();
+//		addLoggingSpecLG();
+//		addAssertionsFromDB(localDBPath);
+//		addAssertionsFromDB(remoteDBPath);
+//		
+//		ArrayList<Long> mtgTimes = ec.getTimes(G1, T1);
+//		System.out.println("\nFinal array:");
+//		for(Long x : mtgTimes)
+//			System.out.println(x);
+//		
+//		/* Query for MTG times and split String. Parse all String digits to Long and store in list */
+////		ec.query(G1, T1); 
+////		String result = ec.getQueryResult();
+////		result = result.replaceAll("[^-?0-9]+", " ").trim(); // remove all non-digits and empty lines
+////		String[] split = result.split(" ");
+////		
+////		long[] mtgTimes = new long[split.length - 1];
+////		for(int i = 0; i<split.length-1; i++) { 
+////			mtgTimes[i] = Long.parseLong(split[i+1]);
+////		}
+////		
+////		
+//		/* Query for LG(T0, ..., Tn) and parse all Strings digits to Long and store in list */
+//		ec.query(LG, T_LG);
+//		writeFile(ec.getQueryResult(), testDBPath);	
+//		String result = ec.getQueryResult();
+//		result = result.replaceAll("[^-?0-9]+", " ").trim(); // remove all non-digits and empty lines
+//		String[] split_2 = result.split(" ");
+//		
+//		int counter = 1;
+//		long[][] lgTimes = new long[(split_2.length-1)/2][2]; // lgTimes[# of LG(T0, T1, [U,P])][# of positive triggers]	
+//		for(int i = 0; i<(split_2.length-1)/2; i++) {
+//			for(int j = 0; j<2; j++) {
+//				lgTimes[i][j] = Long.parseLong(split_2[counter++]);
+//			}
+//		}		
+////		
+//		/** Check if Derivable */
+//		writeFile("", logDBPath);
+//		for(long[] _T : lgTimes) {
+//			Boolean derivable = true;	
+//			for(Long T2 : mtgTimes) { //if precondition of 1st negative trigger holds
+//				if(_T[1] < T2 && T2 < _T[0]) {
+//					derivable = false;
+//					break;
+//				}
+//			}
+//			
+//			if(derivable) { // If there was no breaks, log
+//				String goal = "loggedfunccall(" + String.valueOf(_T[0]) + ",X1,X2,X3)";
+//				System.out.println(goal);
+//				ec.query(goal, T);
+//				String queryResult = ec.getQueryResult();
+//				String log = queryResult.replaceAll("Var.",String.valueOf(_T[0]));
+//				System.out.println(log);
+//				appendFile(log, logDBPath);	
+//			}
+//		}
+//
+//		ec.turnOff();
+//	}
 	
 	
 	private void addLoggingSpecLG( ) {

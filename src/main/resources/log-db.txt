@@ -1,0 +1,5 @@
+Solution length: 1.
+
+(1643097317332,patient-service,com.springboot.microservice.example.patient.PatientController.getPatientMedHistByName,[user,alice])
+
+

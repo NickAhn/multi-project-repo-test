@@ -1,0 +1,3 @@
+funccall(1643097310502, authorization-service, "com.springboot.microservice.example.authorization.AuthorizationController.mendTheGlass", [user])
+funccall(1643097312170, authorization-service, "com.springboot.microservice.example.authorization.AuthorizationController.breakTheGlass", [user])
+

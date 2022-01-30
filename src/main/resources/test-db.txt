@@ -1,0 +1,4 @@
+Solution length: 1.
+
+(1643097317332,1643097312170,[user,alice])
+
